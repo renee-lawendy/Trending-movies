@@ -3,12 +3,12 @@ import useFetch from '../../Hooks/useFetch'
 import { Link } from 'react-router-dom'
 
 
-export default function DisplayMedia({ url, media_type,showLoading }) {
-  const { data, isLoading, errorMessage } = useFetch(url)
-const response = data?.results
+export default function DisplayMedia({ url, media_type, showLoading }) {
+  const { data, isLoading, error } = useFetch(url)
+  const response = data?.results
 
   return (
-    
+
     <div className="row py-4 gy-3">
       <div className="col-md-4 d-flex align-items-center">
         <div><div className="border w-25 mb-3"></div>
@@ -34,11 +34,11 @@ const response = data?.results
           </Link>
         </div>
       })}
-      {errorMessage.length > 0 && <div className='d-flex align-items-center justify-content-center vh-75'>
-        <h3>{errorMessage}</h3></div>}
-      {isLoading&&showLoading? <div className='d-flex align-items-center justify-content-center vh-75'>
-        <i className="fas fa-spinner fa-spin fa-6x"></i></div>:''}
-        
+      {error && <div className='d-flex align-items-center justify-content-center vh-75'>
+        <h3>{error}</h3></div>}
+      {isLoading && showLoading ? <div className='d-flex align-items-center justify-content-center vh-75'>
+        <i className="fas fa-spinner fa-spin fa-6x"></i></div> : ''}
+
     </div>
   )
 }
