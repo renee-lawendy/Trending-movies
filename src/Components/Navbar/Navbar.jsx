@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import BreadCrumb from '../BreadCrumb/BreadCrumb';
 
-export default function Navbar({userData,setUserData}) {
+export default function Navbar({ userData, setUserData }) {
 
-  const navigate =useNavigate()
-  function logOut(){
-localStorage.removeItem("userToken");
-setUserData(null);
-navigate('/login')
+  const navigate = useNavigate()
+  function logOut() {
+    localStorage.removeItem("userToken");
+    setUserData(null);
+    navigate('/login')
   }
   return (
     <div>
@@ -18,27 +19,22 @@ navigate('/login')
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
-            {userData!==null&&<ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+            {userData !== null && <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
 
-<li className="nav-item">
-  <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
-</li>
-<li className="nav-item">
-  <Link className="nav-link active" to='movies'>Movies</Link>
-</li>
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to='/'>Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to='movies'>Movies</Link>
+              </li>
 
-<li className="nav-item">
-  <Link className="nav-link active" to='Tvshow'>Tvshow</Link>
-</li>
-<li className="nav-item">
-  <Link className="nav-link active" to='people'>People</Link>
-</li>
-
-
-
-</ul>}
-
-           
+              <li className="nav-item">
+                <Link className="nav-link active" to='Tvshow'>Tvshow</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to='people'>People</Link>
+              </li>
+            </ul>}
             <ul className="navbar-nav mb-2 mb-lg-0">
 
               <li className="nav-item d-flex align-items-center">
@@ -47,18 +43,19 @@ navigate('/login')
                 <i className='fab mx-2 fa-instagram'></i>
                 <i className='fab mx-2 fa-soundcloud'></i>
               </li>
-              {userData!==null?<li className="nav-item">
-                <span  className="nav-link" onClick={logOut} >Logout</span>
-              </li>:<> <li className="nav-item">
+              {userData !== null ? <li className="nav-item">
+                <span className="nav-link" onClick={logOut} >Logout</span>
+              </li> : <> <li className="nav-item">
                 <Link className="nav-link active" to='register'>Register</Link>
               </li>
 
-              <li className="nav-item">
-                <Link className="nav-link active" to='login'>Login</Link>
-              </li></>}
+                <li className="nav-item">
+                  <Link className="nav-link active" to='login'>Login</Link>
+                </li></>}
 
             </ul>
           </div>
+          
         </div>
       </nav>
     </div>

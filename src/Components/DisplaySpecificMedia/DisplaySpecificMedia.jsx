@@ -1,13 +1,12 @@
 
-// import React, {  useState } from 'react'
-// import useFetch from '../../Hooks/useFetch'
+
 import { Link } from 'react-router-dom'
 export default function DisplaySpecificMedia({data,media_type,errorMessage,isLoading,page,setPage}) {
-//     let [page,setPage]=useState(1)
-//     const {data,isLoading,errorMessage}= useFetch(`https://api.themoviedb.org/3/discover/${media_type}?api_key=e5b977d149f2951f7a25e257e3f62068&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=${page}`)
     function handlePagination(e){
   setPage(e.target.textContent)
+  
   }
+  const pageLength=new Array(10).fill() //knowing the length from the api
   function handlePrevious(){
     setPage(page-1 )
     if(page===1){
@@ -41,10 +40,7 @@ export default function DisplaySpecificMedia({data,media_type,errorMessage,isLoa
       <nav className='d-flex justify-content-center mb-5 ' aria-label="Page navigation example  ">
     <ul  className="pagination my-5 ">
       <li  className="page-item"><span onClick={()=>{handlePrevious()}}   className="page-link" >Previous</span></li>
-      <li  className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >1</span></li>
-      <li  className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >2</span></li>
-      <li  className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >3</span></li>
-      <li  className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >4</span></li>
+       {pageLength.map((page,index)=>{return  <li key={index} className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >{index+1}</span></li>})}
       <li  className="page-item"><span onClick={()=>{handleNext()}}    className="page-link" >next</span></li>
     </ul>
   </nav>
