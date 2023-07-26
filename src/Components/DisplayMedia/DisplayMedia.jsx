@@ -20,7 +20,7 @@ const response = data?.results
       </div>
       {response?.slice(0, 10).map((data) => {
         return <div key={data.id} className="col-md-2">
-          <Link className='text-decoration-none text-white' to={`/mediaDetails/${data.media_type}/${data.id}`}>
+          <Link className='text-decoration-none text-white' to={`/${data.media_type}/${data.id}`}>
             <div className="position-relative">
               {data.poster_path ? <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} className='w-100' alt="" />
                 : <img src={`https://image.tmdb.org/t/p/w500${data.profile_path}`} className='w-100' alt="" />}
