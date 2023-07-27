@@ -37,19 +37,22 @@ export default function DisplaySpecificMedia({data,media_type,errorMessage,isLoa
           </Link>
         </div>})}
       </div>
-      <nav className='d-flex justify-content-center mb-5 ' aria-label="Page navigation example  ">
-    <ul  className="pagination my-5 ">
+      {isLoading?<div className='d-flex align-items-center justify-content-center vh-100 '>
+          <i className="fas fa-spinner fa-spin fa-6x"></i></div>:<nav className='d-flex justify-content-center mb-5 ' aria-label="Page navigation example  ">
+       <ul  className="pagination my-5 ">
       <li  className="page-item"><span onClick={()=>{handlePrevious()}}   className="page-link" >Previous</span></li>
        {pageLength.map((page,index)=>{return  <li key={index} className="page-item"><span onClick={(e)=>{handlePagination(e)}}  className="page-link" >{index+1}</span></li>})}
       <li  className="page-item"><span onClick={()=>{handleNext()}}    className="page-link" >next</span></li>
     </ul>
-  </nav>
+  </nav>}
+      
   {errorMessage!=='Request failed with status code 422'&& errorMessage?.length > 0?<div className='text-center'>
      <h3>Error</h3>
           <p>{errorMessage}</p>
          <Link className=' text-white' to={"/"}> BACK TO HOME PAGE</Link></div>:""}
       
-        {isLoading && <div className='d-flex align-items-center justify-content-center vh-75'>
-          <i className="fas fa-spinner fa-spin fa-6x"></i></div>}</>
+        {isLoading && <div className='d-flex align-items-center justify-content-center vh-100 '>
+          <i className="fas fa-spinner fa-spin fa-6x"></i></div>}
+          </>
     )
 }
